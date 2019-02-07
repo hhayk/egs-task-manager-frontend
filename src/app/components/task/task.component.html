@@ -1,0 +1,26 @@
+<app-user-list (selectUserEmitter)="selectUser($event)"></app-user-list>
+
+<div class="container tasks-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+        <th scope="col">Severity</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of sortedTasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.severity }}</td>
+        <td><button type="button" class="btn btn-link" (click)="editTask(task)">Edit Task</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button type="button" class="btn btn-primary" *ngIf="user" (click)="createTask()">Create task</button>

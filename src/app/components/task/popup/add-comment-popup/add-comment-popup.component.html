@@ -1,0 +1,11 @@
+<div class="popup-container add-comment-popup-container">
+  <p class="add-comment-popup-title">Add Comment</p>
+  <div class="form-group comment-group">
+    <textarea class="form-control" rows="10" #comment></textarea>
+  </div>
+  <div class="add-comment-popup-group-btn">
+    <button class="btn btn-danger" (click)="cancelClick()">Cancel</button>
+    <span class="divider"></span>
+    <button class="btn btn-success" (click)="okClick(comment.value)">Submit</button>
+  </div>
+</div>

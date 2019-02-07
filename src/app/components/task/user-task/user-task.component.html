@@ -1,0 +1,79 @@
+<div class="border create-or-edit-container">
+  <h4>{{ title }}</h4>
+
+  <div class="create-or-edit-inner-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <h5 class="label">Name: </h5>
+        </div>
+        <div class="col-10">
+          <input #nameInput type="text" placeholder="Task name" [value]="state.task?.name" [disabled]="isOnBrowseMode">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-2">
+          <h5 class="label">Assignee: </h5>
+        </div>
+        <div class="col-10">
+          <select #assigneeInput>
+            <option *ngFor="let user of userService.users" [selected]="user.id == state.userId" [value]="user.id"
+              [disabled]="isOnBrowseMode">{{user.name}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-2">
+          <h5 class="label">Severity: </h5>
+        </div>
+        <div class="col-10">
+          <select #severityInput>
+            <option *ngFor="let severity of severityes" [selected]="severity == state.task?.severity" [value]="severity"
+              [disabled]="isOnBrowseMode">{{severity}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-2">
+          <h5 class="label">Status: </h5>
+        </div>
+        <div class="col-10">
+          <select #statusInput>
+            <option *ngFor="let status of statuses" [selected]="status == state.task?.status" [value]="status"
+              [disabled]="isOnBrowseMode">{{status}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="container comments-container">
+      <div *ngIf="isOnEditMode">
+        <div>
+          <h5 class="d-inline">Comments</h5>
+          <button type="button" class="btn btn-primary d-inline add-comment" (click)="addComment()">Add comment</button>
+        </div>
+        <br>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of state.task?.comments">
+              <td>{{ comment.id }}</td>
+              <td>{{ comment.text }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <button *ngIf="!isOnBrowseMode" type="button" class="btn btn-primary" (click)="saveTask(nameInput.value, assigneeInput.value, severityInput.value, statusInput.value)">Save
+        task</button>
+    </div>
+  </div>
+</div>

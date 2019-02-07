@@ -1,0 +1,22 @@
+<div class="container notification-container">
+  <h4>Notifications</h4>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Text</th>
+        <th scope="col">Unread</th>
+        <th scope="col">Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notification of notifications" (click)="taskClick(notification.taskId)" [class.table-primary]="notification.unread">
+        <td>{{ notification.id }}</td>
+        <td>{{ notification.text }}</td>
+        <td>{{ notification.unread }}</td>
+        <td>{{ notification.createdDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

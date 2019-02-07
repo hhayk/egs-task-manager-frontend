@@ -1,0 +1,15 @@
+<div class="select-user">
+  <h5 class="d-inline">Select a User: </h5>
+  <select (change)=selectUserByListIndex($event.target.value)>
+    <option value="-1">--Select--</option>
+    <option *ngFor="let user of userService.users" [selected]="user.id == selectedUser?.id" [value]="user.id">{{user.name}}</option>
+  </select>
+</div>
+
+<div class="selected-user">
+  <h4 class="d-inline">Selected User: </h4>
+  <h4 class="d-inline selected-user-name">{{selectedUser?.name}}</h4>
+  <button type="button" class="btn btn-primary new-notifications" *ngIf="selectedUser" (click)="newNotifications()">
+    You have new notifications <span class="badge badge-light">{{ unreadNotificationsLength }}</span>
+  </button>
+</div>
